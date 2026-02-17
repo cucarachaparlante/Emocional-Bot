@@ -27,17 +27,27 @@ main {
 }
 
 .message {
-    margin-bottom: 10px;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 10px;
+    max-width: 70%;
 }
 
 .user {
-    text-align: right;
-    color: #0E3A5D;
+    background-color: #d1e7ff;
+    align-self: flex-end;
 }
 
 .bot {
-    text-align: left;
-    color: #333;
+    background-color: #f1f1f1;
+    align-self: flex-start;
+}
+
+#chatContainer {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: auto;
 }
 
 .inputArea {
