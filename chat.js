@@ -1,29 +1,19 @@
-function sendMessage() {
+function handleSend() {
     const input = document.getElementById("userInput");
     const text = input.value.trim();
+
     if (!text) return;
 
-    addMessage(text, "user");
-
-    const risk = analyzeRisk(text);
     const emotion = detectEmotion(text);
+    const risk = analyzeRisk(text);
+    const response = generateResponse(emotion);
+
+    addMessage(text, "user");
+    addMessage(response, "bot");
 
     if (risk === "alto") {
-        activateCrisisProtocol();
-        addMessage("Tu bienestar es importante. Te recomiendo buscar apoyo profesional.", "bot");
-    } else {
-        const response = generateResponse(emotion);
-        addMessage(response, "bot");
+        showCrisisAlert();
     }
 
     input.value = "";
-}
-
-function addMessage(text, sender) {
-    const chat = document.getElementById("chatContainer");
-    const message = document.createElement("div");
-    message.classList.add("message", sender);
-    message.textContent = text;
-    chat.appendChild(message);
-    chat.scrollTop = chat.scrollHeight;
 }
