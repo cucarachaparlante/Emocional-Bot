@@ -1,10 +1,21 @@
 function detectEmotion(text) {
     text = text.toLowerCase();
 
-    if (text.includes("triste")) return "tristeza";
-    if (text.includes("ansiedad")) return "ansiedad";
-    if (text.includes("estres")) return "estrés";
-    if (text.includes("enojo")) return "enojo";
+    const patterns = {
+        tristeza: ["triste", "deprimido", "deprimida", "sin ganas", "llorar"],
+        ansiedad: ["ansiedad", "nervioso", "nerviosa", "preocupado", "preocupada"],
+        estrés: ["estres", "estrés", "agotado", "agotada", "cansado", "cansada"],
+        enojo: ["enojo", "enojado", "enojada", "molesto", "molesta", "furioso"]
+    };
+
+    for (let emotion in patterns) {
+        for (let word of patterns[emotion]) {
+            if (text.includes(word)) {
+                return emotion;
+            }
+        }
+    }
 
     return "neutral";
 }
+
